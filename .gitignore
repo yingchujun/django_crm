@@ -7,6 +7,8 @@ __pycache__
 db.sqlite3
 media
 
+/deal_crm/local_settings.py
+
 # Backup files #
 *.bak
 

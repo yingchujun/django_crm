@@ -244,3 +244,9 @@ NB_PERMISSION = {
     "CUSTOMER": {
     }
 }
+
+
+try:
+    from local_settings import *
+except Exception:
+    pass
