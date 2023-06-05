@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{%  block content %}
+    <div style="margin-bottom: 5px">
+        <a  href="{% url 'customer_add' %}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> 新建</a>
+    </div>
+    <table class="table table-striped " style="text-align: center">
+      <thead>
+        <tr >
+          <th style="text-align: center">id</th>
+          <th style="text-align: center">用户名</th>
+          <th style="text-align: center">手机号</th>
+          <th style="text-align: center">账户余额</th>
+          <th style="text-align: center">级别</th>
+          <th style="text-align: center">注册时间</th>
+          <th style="text-align: center">创建者</th>
+          <th style="text-align: center">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for row in  queryset %}
+          <tr>
+              <th scope="row" style="text-align: center">{{ row.id }}</th>
+              <td>{{ row.username }}</td>
+              <td>{{ row.mobile }}</td>
+              <td>{{ row.balance }}</td>
+              <td>{{ row.level.title }}({{ row.level.percent }}%)</td>
+              <td>{{ row.create_date|date:'Y-m-d' }}</td>
+              <td>{{ row.creator.username }}</td>
+              <td>
+                  <a href="{% url 'customer_edit' pk=row.id %}" class="btn btn-primary btn-sm">编辑</a>
+                  <a href="{% url 'customer_delete' pk=row.id %}" class="btn btn-danger btn-sm">删除</a>
+              </td>
+          </tr>
+
+      {% endfor %}
+      </tbody>
+    </table>
+
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+            {% for list in page_list %}
+                {{ list }}
+            {% endfor %}
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+
+{% endblock %}

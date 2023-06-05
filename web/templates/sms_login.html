@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账号登录</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.css' %}">
+    <style>
+        .box {
+            width: 490px;
+            border:  1px solid #dddddd;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 150px;
+            padding: 40px 30px;
+            box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h1 style="text-align: center">短信登录</h1>
+            <div class="form-group">
+                <label for="">手机号</label>
+                <input type="text" name="username" placeholder="手机号" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">验证码</label>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <input type="text" name="code" placeholder="验证码" class="form-control">
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="button" class="btn btn-default">发送短信</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">角色</label>
+                <select class="form-control" name="role">
+                  <option value ="1">管理员</option>
+                  <option value ="2">用户</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="登录">
+            <a href="{% url 'login' %}" style="float: right">账号登录</a>
+        </form>
+    </div>
+</body>
+</html>
